@@ -3,3 +3,10 @@ pandas
 numpy
 seaborn
 matplotlib
+osmnx
+pyarrow
+ujson
+haversine
+folium
+
+scikit-learn
