@@ -5,3 +5,8 @@ seaborn
 matplotlib
 haversine
 folium
+plotly
+shapely
+geopandas
+scipy
+kaleido
