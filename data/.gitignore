@@ -1,3 +1,5 @@
 train_cleaned.csv
 train_cleaned.parquet
 train.csv
+train.parquet
+synthetic_data.parquet

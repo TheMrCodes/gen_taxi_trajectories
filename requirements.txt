@@ -8,5 +8,8 @@ pyarrow
 ujson
 haversine
 folium
+rerun-sdk
+plotly
+kaleido
 
 scikit-learn

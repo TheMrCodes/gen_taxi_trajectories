@@ -26,6 +26,7 @@ def get_device() -> str:
 
 
 DATA_FILE = 'data/train_cleaned.parquet'
+OUTPUT_FILE = 'data/synthetic_data.parquet'
 DEVICE = get_device()
 
 def log(msg: str, level: str = "INFO"):
@@ -49,7 +50,7 @@ discrete_columns = [
     'END_POSITION_LAT',
     'END_POSITION_LONG',
 ]
-dataset = df[discrete_columns].sample(2000)
+dataset = df[discrete_columns].sample(5000)
 
 ctgan = CTGAN(epochs=10, cuda=DEVICE)
 log("Start fitting the model...")
@@ -60,4 +61,5 @@ log("Start generating sampling...")
 synthetic_data = ctgan.sample(1000)
 
 #%%
-synthetic_data
+synthetic_data.to_parquet(OUTPUT_FILE)
+#synthetic_data.to_csv('data/synthetic_data.csv', sep=';', index=False, header=True)

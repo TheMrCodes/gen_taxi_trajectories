@@ -8,6 +8,9 @@ pyarrow
 ujson
 haversine
 folium
+rerun-sdk
+plotly
+kaleido
 
 --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
 torch==2.1.0.post0 
