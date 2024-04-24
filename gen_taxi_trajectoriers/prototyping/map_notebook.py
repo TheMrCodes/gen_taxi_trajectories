@@ -112,8 +112,13 @@ def get_gps_points_for_route(G, route):
                         gps_point = from_point + (to_point - from_point) * local_percent_diff
                         break
                     checked_length += diff
-                if gps_point is None:
-                    print("Error: The fu ??? How??")
+                if gps_point is None: 
+                    print(f"Error: gps_point is None this should not happen! (edge_id = {data['osmid']})")
+
+                    u_node, v_node = G.nodes[u], G.nodes[v]
+                    from_point = np.array([u_node["x"], u_node["y"]])
+                    to_point = np.array([v_node["x"], v_node["y"]])
+                    gps_points.append(from_point + (to_point - from_point) * percent_of_edge)
                     break
                 gps_points.append(gps_point)
 
@@ -127,6 +132,20 @@ def get_gps_points_for_route(G, route):
     x, y = G.nodes[v]["x"], G.nodes[v]["y"]
     gps_points.append((x, y))
     return np.array(gps_points)
+
+def gen_route_from_points(G, origin_point, destination_point):
+    orig_node = ox.distance.nearest_nodes(G, *origin_point)
+    destination_node = ox.distance.nearest_nodes(G, *destination_point)
+    route = nx.shortest_path(G, orig_node, destination_node, weight='travel_time')
+    route_edges = ox.routing.route_to_gdf(G, route, 'travel_time')
+    total_route_length = route_edges['length'].sum() # in meters
+    route_travel_time = route_edges['travel_time'].sum() # in seconds
+    return route, total_route_length, route_travel_time
+
+def gen_gps_points_from_router_start_and_end_points(G, origin_point, destination_point):
+    route, length, duration = gen_route_from_points(G, origin_point, destination_point)
+    gps_points = get_gps_points_for_route(G, route)
+    return gps_points, length, duration
 
 gps_points = get_gps_points_for_route(G, route)
 gps_points.shape

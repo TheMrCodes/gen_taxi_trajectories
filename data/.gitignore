@@ -3,3 +3,5 @@ train_cleaned.parquet
 train.csv
 train.parquet
 synthetic_data.parquet
+synthetic_gps_data.csv
+synthetic_gps_data.parquet
