@@ -1,1 +1,13 @@
+#IDEA
+.idea
+
+# virtual env
 .venv
+
+# Logs
+cache
+logs
+
+# Byte-compiled / optimized / DLL files
+__pycache__
+*.pyc
