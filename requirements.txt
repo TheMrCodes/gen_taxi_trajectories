@@ -1,3 +1,5 @@
+scikit-learn
+
 ipykernel
 pandas
 numpy
@@ -11,5 +13,7 @@ folium
 rerun-sdk
 plotly
 kaleido
-
-scikit-learn
+shapely
+geopandas
+scipy
+ctgan
